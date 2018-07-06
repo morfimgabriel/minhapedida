@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.aluno.correcaominhapedida.activitys.MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="26dp"
+        android:text="MinhaPedida"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0899d7"
+        android:textColor="#ffffff"
+        android:layout_marginTop="10dp"
+        android:text="Adicionando Produto"
+        android:onClick="btnAdicionarProduto"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0899d7"
+        android:textColor="#ffffff"
+        android:layout_marginTop="10dp"
+        android:text="Limpar Lista"
+        android:onClick="limpar"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0899d7"
+        android:textColor="#ffffff"
+        android:layout_marginTop="10dp"
+        android:text="Qr Code"
+        android:onClick="scanQRCode"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Total:"
+        android:textSize="24dp"/>
+
+    <TextView
+        android:id="@+id/totalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="0"/>
+
+
+
+
+
+    <ListView
+        android:id="@+id/listViewItens"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+</LinearLayout>
