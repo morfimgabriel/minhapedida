@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             listItens = (ArrayList<Item>) banco.getDaoItem().queryForAll();
             System.out.println("TAMANHO: " + listItens.size());
             calcularTotal();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 sum += i.getValor() * i.getQuantidade();
             }
         }
-        textViewTotal.setText("" + sum);
+        textViewTotal.setText("R$: " + sum);
     }
 
     public void scanQRCode(View v) {
@@ -125,14 +126,17 @@ public class MainActivity extends AppCompatActivity {
 
                         Produto produto = banco.getDaoProduto().queryForId(id);
 
-                        Toast.makeText(this, "item do banco ->" + item, Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(this, "item do banco ->" + item.getProduto().getNome(), Toast.LENGTH_SHORT).show();
                         if (produto != null) {
                             item = new Item();
                             item.setProduto(produto);
                             item.setQuantidade(1);
                             item.setValor(item.getProduto().getValor());
                             adapterItens.add(item);
+                            banco.getDaoItem().create(item);
+                            valtotal = valtotal + item.getValor();
+                            textViewTotal.setText("R$: " + valtotal);
+                            calcularTotal();
                         } else {
                             Toast.makeText(this, "Produto não encontrado", Toast.LENGTH_SHORT).show();
                         }
@@ -141,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     break;
+
 
                 case REQUEST_BAR_CODE:
                     Toast.makeText(this, "BarCode:\n" + data.getStringExtra("SCAN_RESULT"), Toast.LENGTH_SHORT).show();
@@ -161,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                     listItens = new ArrayList<>();
                     adapterItens.clear();
                     valtotal = 0d;
-                    textViewTotal.setText("" + valtotal);
+                    textViewTotal.setText("R$: " + valtotal);
                 }
             }
         } catch (SQLException e) {
